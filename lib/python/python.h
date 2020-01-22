@@ -6,8 +6,23 @@
 
 #include <string>
 #include <lib/base/object.h>
+#include "Python.h"
 
 #if !defined(SKIP_PART1) && !defined(SWIG)
+
+#define PyStringObject PyUnicodeObject
+#define PyString_FromStringAndSize PyUnicode_FromStringAndSize
+#define PyString_AS_STRING PyUnicode_AsUTF8
+#define PyString_AsString PyUnicode_AsUTF8
+#define PyString_Check PyUnicode_Check
+#define PyString_Size PyBytes_Size
+
+#define PyInt_AsLong PyLong_AsLong
+#define PyInt_Check PyLong_Check
+#define PyInt_AsUnsignedLongMask PyLong_AsUnsignedLongMask
+
+#define PyExc_StandardError PyExc_Exception
+
 class ePyObject
 {
 	PyObject *m_ob;
@@ -235,21 +250,21 @@ inline ePyObject Impl_PyDict_New(const char* file, int line)
 
 inline ePyObject Impl_PyString_FromString(const char* file, int line, const char *str)
 {
-	return ePyObject(PyString_FromString(str), file, line);
+	return ePyObject(PyUnicode_FromString(str), file, line);
 }
 
 inline ePyObject Impl_PyString_FromFormat(const char* file, int line, const char *fmt, ...)
 {
 	va_list ap;
 	va_start(ap, fmt);
-	PyObject *ob = PyString_FromFormatV(fmt, ap);
+	PyObject *ob = PyUnicode_FromFormatV(fmt, ap);
 	va_end(ap);
 	return ePyObject(ob, file, line);
 }
 
 inline ePyObject Impl_PyInt_FromLong(const char* file, int line, long val)
 {
-	return ePyObject(PyInt_FromLong(val), file, line);
+	return ePyObject(PyLong_FromLong(val), file, line);
 }
 
 inline ePyObject Impl_PyLong_FromLong(const char* file, int line, long val)
@@ -320,21 +335,21 @@ inline ePyObject Impl_PyDict_New()
 
 inline ePyObject Impl_PyString_FromString(const char *str)
 {
-	return PyString_FromString(str);
+	return PyUnicode_FromString(str);
 }
 
 inline ePyObject Impl_PyString_FromFormat(const char *fmt, ...)
 {
 	va_list ap;
 	va_start(ap, fmt);
-	PyObject *ob = PyString_FromFormatV(fmt, ap);
+	PyObject *ob = PyUnicode_FromFormatV(fmt, ap);
 	va_end(ap);
 	return ePyObject(ob);
 }
 
 inline ePyObject Impl_PyInt_FromLong(long val)
 {
-	return PyInt_FromLong(val);
+	return PyLong_FromLong(val);
 }
 
 inline ePyObject Impl_PyLong_FromLong(long val)
