@@ -114,7 +114,7 @@ PyObject *getInfoObject(int w)
 				data = info->getBuffer(size);
 				if (data && size)
 				{
-					return PyBuffer_FromMemory(data, size);
+					return PyMemoryView_FromMemory((char*)data, size, PyBUF_READ);
 				}
 				else
 				{

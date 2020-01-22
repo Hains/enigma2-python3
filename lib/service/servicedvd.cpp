@@ -1164,8 +1164,20 @@ void eServiceDVD::saveCuesheet()
 
 eAutoInitPtr<eServiceFactoryDVD> init_eServiceFactoryDVD(eAutoInitNumbers::service+1, "eServiceFactoryDVD");
 
+static struct PyModuleDef servicedvd_moduledef = {
+		PyModuleDef_HEAD_INIT,
+		"servicedvd",	/* m_name */
+		"servicedvd",	/* m_doc */
+		-1,				/* m_size */
+		NULL,			/* m_methods */
+		NULL,			/* m_reload */
+		NULL,			/* m_traverse */
+		NULL,			/* m_clear */
+		NULL,			/* m_free */
+	};
+
 PyMODINIT_FUNC
 initservicedvd(void)
 {
-	Py_InitModule("servicedvd", NULL);
+	PyModule_Create(&servicedvd_moduledef);
 }

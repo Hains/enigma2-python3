@@ -379,10 +379,21 @@ static PyMethodDef console_module_methods[] = {
 	{NULL}  /* Sentinel */
 };
 
+static struct PyModuleDef eConsole_moduledef = {
+	PyModuleDef_HEAD_INIT,
+	"eConsoleImpl",																			/* m_name */
+	"Module that implements eConsoleAppContainer with working cyclic garbage collection.",	/* m_doc */
+	-1,																						/* m_siz
+	console_module_methods,																	/* m_methods */
+	NULL,																					/* m_reload */
+	NULL,																					/* m_traverse */
+	NULL,																					/* m_clear */
+	NULL,																					/* m_free */
+	};
+
 void eConsoleInit(void)
 {
-	PyObject* m = Py_InitModule3("eConsoleImpl", console_module_methods,
-		"Module that implements eConsoleAppContainer with working cyclic garbage collection.");
+	PyObject* m = PyModule_Create(&eConsole_moduledef);
 
 	if (m == NULL)
 		return;

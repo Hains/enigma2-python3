@@ -399,10 +399,21 @@ static PyMethodDef base_module_methods[] = {
 	{NULL}  /* Sentinel */
 };
 
+static struct PyModuleDef eBase_moduledef = {
+	PyModuleDef_HEAD_INIT,
+	"eBaseImpl",																			/* m_name */
+	"Module that implements some enigma classes with working cyclic garbage collection.",	/* m_doc */
+	-1,																						/* m_siz
+	base_module_methods,																	/* m_methods */
+	NULL,																					/* m_reload */
+	NULL,																					/* m_traverse */
+	NULL,																					/* m_clear */
+	NULL,																					/* m_free */
+	};
+
 void eBaseInit(void)
 {
-	PyObject* m = Py_InitModule3("eBaseImpl", base_module_methods,
-		"Module that implements some enigma classes with working cyclic garbage collection.");
+	PyObject* m = PyModule_Create(&eBase_moduledef);
 
 	if (m == NULL)
 		return;
