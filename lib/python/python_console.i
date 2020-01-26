@@ -391,18 +391,20 @@ static struct PyModuleDef eConsole_moduledef = {
 	NULL,																					/* m_free */
 	};
 
-void eConsoleInit(void)
+PyObject* PyInit_eConsoleImpl(void)
 {
 	PyObject* m = PyModule_Create(&eConsole_moduledef);
 
 	if (m == NULL)
-		return;
+		return NULL;
 
 	if (!PyType_Ready(&eConsolePyType))
 	{
 		Org_Py_INCREF((PyObject*)&eConsolePyType);
 		PyModule_AddObject(m, "eConsoleAppContainer", (PyObject*)&eConsolePyType);
 	}
+	return m;
 }
 }
+
 %}

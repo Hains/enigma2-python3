@@ -411,12 +411,12 @@ static struct PyModuleDef eBase_moduledef = {
 	NULL,																					/* m_free */
 	};
 
-void eBaseInit(void)
+PyObject* PyInit_eBaseImpl(void)
 {
 	PyObject* m = PyModule_Create(&eBase_moduledef);
 
 	if (m == NULL)
-		return;
+		return NULL;
 
 	if (!PyType_Ready(&eTimerPyType))
 	{
@@ -428,6 +428,7 @@ void eBaseInit(void)
 		Org_Py_INCREF((PyObject*)&eSocketNotifierPyType);
 		PyModule_AddObject(m, "eSocketNotifier", (PyObject*)&eSocketNotifierPyType);
 	}
+	return m;
 }
 }
 

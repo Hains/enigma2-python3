@@ -2,9 +2,9 @@
 			/* avoid warnigs :) */
 #undef _POSIX_C_SOURCE
 #define _POSIX_C_SOURCE 200112L
-extern "C" void init_enigma();
-extern "C" void eBaseInit(void);
-extern "C" void eConsoleInit(void);
+extern "C" PyObject* PyInit__enigma(void);
+extern "C" PyObject* PyInit_eBaseImpl(void);
+extern "C" PyObject* PyInit_eConsoleImpl(void);
 extern void bsodFatal(const char *component);
 extern void quitMainloop(int exitCode);
 
@@ -123,12 +123,12 @@ ePython::ePython()
 
 //	Py_OptimizeFlag = 1;
 
+	PyImport_AppendInittab("_enigma", PyInit__enigma);
+	PyImport_AppendInittab("eBaseImpl", PyInit_eBaseImpl);
+	PyImport_AppendInittab("eConsoleImpl", PyInit_eConsoleImpl);
+
 	Py_Initialize();
 	PyEval_InitThreads();
-
-	init_enigma();
-	eBaseInit();
-	eConsoleInit();
 }
 
 ePython::~ePython()
