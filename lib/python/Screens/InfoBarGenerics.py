@@ -43,7 +43,7 @@ from enigma import eTimer, eServiceCenter, eDVBServicePMTHandler, iServiceInform
 from time import time, localtime, strftime
 import os
 from bisect import insort
-from sys import maxint
+from sys import maxsize
 import itertools, datetime
 from RecordTimer import RecordTimerEntry, RecordTimer, findSafeRecordPath
 # hack alert!
@@ -106,19 +106,19 @@ def getResumePoint(session):
 
 def saveResumePoints():
 	global resumePointCache, resumePointCacheLast
-	import cPickle
+	import pickle
 	try:
-		f = open('/etc/enigma2/resumepoints.pkl', 'wb')
-		cPickle.dump(resumePointCache, f, cPickle.HIGHEST_PROTOCOL)
+		f = open('/home/root/resumepoints.pkl', 'wb')
+		pickle.dump(resumePointCache, f, cPickle.HIGHEST_PROTOCOL)
 		f.close()
 	except Exception as ex:
 		print("[InfoBarGenerics] Failed to write resumepoints:", ex)
 	resumePointCacheLast = int(time())
 
 def loadResumePoints():
-	import cPickle
+	import pickle
 	try:
-		return cPickle.load(open('/etc/enigma2/resumepoints.pkl', 'rb'))
+		return pickle.load(open('/home/root/resumepoints.pkl', 'rb'))
 	except Exception as ex:
 		print("[InfoBarGenerics] Failed to load resumepoints:", ex)
 		return {}
@@ -209,8 +209,8 @@ class InfoBarUnhandledKey:
 		self.checkUnusedTimer = eTimer()
 		self.checkUnusedTimer.callback.append(self.checkUnused)
 		self.onLayoutFinish.append(self.unhandledKeyDialog.hide)
-		eActionMap.getInstance().bindAction('', -maxint -1, self.actionA) #highest prio
-		eActionMap.getInstance().bindAction('', maxint, self.actionB) #lowest prio
+		eActionMap.getInstance().bindAction('', -sys.maxsize -1, self.actionA) #highest prio
+		eActionMap.getInstance().bindAction('', sys.maxsize, self.actionB) #lowest prio
 		self.flags = (1<<1)
 		self.uflags = 0
 
@@ -3325,7 +3325,7 @@ class InfoBarNotifications:
 				self.hide()
 				dlg.show()
 				self.notificationDialog = dlg
-				eActionMap.getInstance().bindAction('', -maxint - 1, self.keypressNotification)
+				eActionMap.getInstance().bindAction('', -sys.maxsize - 1, self.keypressNotification)
 			else:
 				dlg = self.session.open(n[1], *n[2], **n[3])
 
@@ -3792,7 +3792,7 @@ class InfoBarPowersaver:
 		self.sleepTimer = eTimer()
 		self.sleepStartTime = 0
 		self.sleepTimer.callback.append(self.sleepTimerTimeout)
-		eActionMap.getInstance().bindAction('', -maxint - 1, self.keypress)
+		eActionMap.getInstance().bindAction('', -sys.maxsize - 1, self.keypress)
 
 	def keypress(self, key, flag):
 		if flag:

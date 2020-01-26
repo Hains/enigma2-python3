@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 import sys
-import cPickle
+import pickle
 
 infilename = "iso-639-3.tab"
 outfilename = "iso-639-3.pck"
@@ -23,4 +23,4 @@ with open(infilename, 'r') as f:
 				l[item[i]] = name
 
 with open(outfilename, 'wb') as f:
-	cPickle.dump(l, f, cPickle.HIGHEST_PROTOCOL)
+	pickle.dump(l, f, pickle.HIGHEST_PROTOCOL)
