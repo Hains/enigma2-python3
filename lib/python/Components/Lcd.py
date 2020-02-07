@@ -7,7 +7,7 @@ from Components.SystemInfo import SystemInfo
 from Screens.InfoBar import InfoBar
 from Screens.Screen import Screen
 from Tools.Directories import fileExists
-from sys import maxint
+from sys import maxsize
 from twisted.internet import threads
 import Screens.Standby
 import usb
@@ -81,7 +81,7 @@ class IconCheckPoller:
 
 class LCD:
 	def __init__(self):
-		eActionMap.getInstance().bindAction('', -maxint -1, self.DimUpEvent)
+		eActionMap.getInstance().bindAction('', -sys.maxsize -1, self.DimUpEvent)
 		self.autoDimDownLCDTimer = eTimer()
 		self.autoDimDownLCDTimer.callback.append(self.autoDimDownLCD)
 		self.autoDimUpLCDTimer = eTimer()
@@ -97,7 +97,7 @@ class LCD:
 		eActionMap.getInstance().unbindAction('', self.DimUpEvent)
 
 	def leaveStandby(self):
-		eActionMap.getInstance().bindAction('', -maxint -1, self.DimUpEvent)
+		eActionMap.getInstance().bindAction('', -sys.maxsize -1, self.DimUpEvent)
 
 	def DimUpEvent(self, key, flag):
 		self.autoDimDownLCDTimer.stop()
