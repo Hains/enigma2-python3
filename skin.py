@@ -296,7 +296,7 @@ def parseValuePair(s, scale, object=None, desktop=None, size=None):
 		parentsize = getParentSize(object, desktop)
 	xval = parseCoordinate(x, parentsize.width(), size and size.width() or 0)
 	yval = parseCoordinate(y, parentsize.height(), size and size.height() or 0)
-	return (xval * scale[0][0] / scale[0][1], yval * scale[1][0] / scale[1][1])
+	return (xval * scale[0][0] // scale[0][1], yval * scale[1][0] // scale[1][1])
 
 def parsePosition(s, scale, object=None, desktop=None, size=None):
 	return ePoint(*parseValuePair(s, scale, object, desktop, size))
@@ -330,7 +330,7 @@ def parseFont(s, scale=((1, 1), (1, 1))):
 			print("[skin] Error: Font '%s' (in '%s') is not defined!  Using 'Body' font ('%s') instead." % (name, s, f[0]))
 			name = f[0]
 			size = f[1] if size is None else size
-	return gFont(name, int(size) * scale[0][0] / scale[0][1])
+	return gFont(name, int(size) * scale[0][0] // scale[0][1])
 
 def parseColor(s):
 	if s[0] != "#":
