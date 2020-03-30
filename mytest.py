@@ -123,7 +123,7 @@ config.misc.SyncTimeUsing.addNotifier(useSyncUsingChanged)
 
 def NTPserverChanged(configelement):
 	open("/etc/default/ntpdate", "w").write('NTPSERVERS="' + configelement.value + '"\n')
-	os.chmod("/etc/default/ntpdate", 755)
+	os.chmod("/etc/default/ntpdate", 0o755)
 	from Components.Console import Console
 	Console = Console()
 	Console.ePopen('/usr/bin/ntpdate-sync')
