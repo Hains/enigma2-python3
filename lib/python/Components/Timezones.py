@@ -160,7 +160,7 @@ class Timezones:
 				name = name.encode(encoding="UTF-8", errors="ignore")
 				area = area.encode(encoding="UTF-8", errors="ignore")
 				zone = zone.encode(encoding="UTF-8", errors="ignore")
-				zones.append((zone, name.replace("_", " ")))
+				zones.append((zone, name.replace(b"_", b" ")))
 			if area:
 				if area in self.timezones:
 					zones = self.timezones[area] + zones
@@ -176,13 +176,13 @@ class Timezones:
 	def gmtSort(self, zones):
 		data = {}
 		for (zone, name) in zones:
-			if name.startswith("GMT"):
+			if name.startswith(b"GMT"):
 				try:
 					key = int(name[4:])
 					key = (key * -1) + 15 if name[3:4] == "-" else key + 15
-					key = "GMT%02d" % key
+					key = b"GMT%02d" % key
 				except ValueError:
-					key = "GMT15"
+					key = b"GMT15"
 			else:
 				key = name
 			data[key] = (zone, name)
@@ -228,9 +228,9 @@ class Timezones:
 					zones.append((zonePath, name))
 				else:
 					print("[Timezones] Warning: Classic time zone '%s' (%s) is not available in '%s'!" % (name, zonePath, TIMEZONE_DATA))
-			self.timezones["Classic"] = zones
+			self.timezones[b"Classic"] = zones
 		if len(zones) == 0:
-			self.timezones["Classic"] = [("UTC", "UTC")]
+			self.timezones[b"Classic"] = [(b"UTC", b"UTC")]
 
 	# Return a sorted list of all Area entries.
 	#
