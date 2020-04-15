@@ -33,7 +33,7 @@ class PerServiceBase(object):
 			self.navcore.event.append(PerServiceBase.event)
 
 		EventMap = EventMap.setdefault
-		for x in eventmap.iteritems():
+		for x in iter(eventmap.items()):
 			EventMap(x[0], []).append((with_event, x[1]))
 
 		# start with stopped state, so simulate that
