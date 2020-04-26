@@ -44,7 +44,7 @@ class Wlan:
 			else:
 				b = b + chr(i)
 
-		self.asciitrans = maketrans(a, b)
+		self.asciitrans = str.maketrans(a, b)
 
 	def asciify(self, str):
 		return str.translate(self.asciitrans)
