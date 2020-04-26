@@ -8,9 +8,7 @@ from __future__ import print_function
 # print(_("Some text"))
 # because the log unit looks enough like a file!
 
-import sys
-from cStringIO import StringIO
-import threading
+import io, sys, threading
 
 logfile = None
 # Need to make our operations thread-safe.
@@ -21,7 +19,7 @@ size = None
 def open(buffersize = 16384):
 	global logfile, mutex, size
 	if logfile is None:
-		logfile = StringIO()
+		logfile = io.StringIO()
 		mutex = threading.Lock()
 		size = buffersize
 
