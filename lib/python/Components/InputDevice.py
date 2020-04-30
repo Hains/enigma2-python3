@@ -59,7 +59,7 @@ class inputDevices:
 				self.name = self.name[:self.name.find(b"\0")]
 				os.close(self.fd)
 			except (IOError,OSError) as err:
-				print("[InputDevice] getInputDevices " + evdev + " <ERROR: ioctl(EVIOCGNAME): ' + str(err) + " >')
+				print("[InputDevice] getInputDevices " + evdev + " <ERROR: ioctl(EVIOCGNAME): " + str(err) + " >")
 				self.name = None
 
 			if self.name:
@@ -76,7 +76,7 @@ class inputDevices:
 		elif "mouse" in str(name).lower():
 			return "mouse"
 		else:
-			print("[InputDevice] Unknown device type:",name)
+			print("[InputDevice] Unknown device type:", name)
 			return None
 
 	def getDeviceName(self, x):
