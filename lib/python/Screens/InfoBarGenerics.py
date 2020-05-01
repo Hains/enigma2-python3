@@ -42,6 +42,7 @@ from Tools.KeyBindings import getKeyDescription
 from enigma import eTimer, eServiceCenter, eDVBServicePMTHandler, iServiceInformation, iPlayableService, eServiceReference, eEPGCache, eActionMap, getDesktop, eDVBDB, getBoxBrand, getBoxType
 from time import time, localtime, strftime
 import os
+from os import sys
 from bisect import insort
 from sys import maxsize
 import itertools, datetime
