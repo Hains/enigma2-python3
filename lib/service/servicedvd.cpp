@@ -1176,8 +1176,7 @@ static struct PyModuleDef servicedvd_moduledef = {
 		NULL,			/* m_free */
 	};
 
-PyMODINIT_FUNC
-initservicedvd(void)
+PyMODINIT_FUNC PyInit_servicedvd(void)
 {
-	PyModule_Create(&servicedvd_moduledef);
+	return PyModule_Create(&servicedvd_moduledef);
 }
