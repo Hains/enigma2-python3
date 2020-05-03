@@ -122,5 +122,5 @@ class ServiceEventTracker:
 
 	def __del_event(self):
 		EventMap = ServiceEventTracker.EventMap.setdefault
-		for x in self.__eventmap.iteritems():
+		for x in iter(self.__eventmap.items()):
 			EventMap(x[0], []).remove((self.__passall, self.__screen, x[1]))
