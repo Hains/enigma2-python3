@@ -336,12 +336,12 @@ class MovieList(GUIComponent):
 
 	def setItemsPerPage(self):
 		if self.listHeight > 0:
-			itemHeight = self.listHeight / config.movielist.itemsperpage.getValue()
+			itemHeight = self.listHeight // config.movielist.itemsperpage.getValue()
 		else:
 			itemHeight = 25 # some default (270/5)
 		self.itemHeight = itemHeight
 		self.l.setItemHeight(itemHeight)
-		self.instance.resize(eSize(self.listWidth, self.listHeight / itemHeight * itemHeight))
+		self.instance.resize(eSize(self.listWidth, self.listHeight // itemHeight * itemHeight))
 
 	def setFontsize(self):
 		if isHD():
