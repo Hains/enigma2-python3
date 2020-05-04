@@ -12,8 +12,6 @@
 #include <sys/types.h>
 #include <sys/un.h>
 
-extern "C" PyObject* PyInit_socketmmi(void);
-
 class eSocketMMIHandler: public sigc::trackable
 {
 	eIOBuffer buffer;
