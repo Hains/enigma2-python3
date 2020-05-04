@@ -1407,6 +1407,8 @@ class ChannelSelectionBase(Screen):
 				"gotAsciiCode": self.keyAsciiCode,
 				"keyLeft": self.keyLeft,
 				"keyRight": self.keyRight,
+				"keyUp": self.keyUp,
+				"keyDown": self.keyDown,
 				"keyRecord": self.keyRecord,
 				"toggleTwoLines": self.toggleTwoLines,
 				"1": self.keyNumberGlobal,
@@ -1776,6 +1778,12 @@ class ChannelSelectionBase(Screen):
 			self.changeBouquet(+1)
 		else:
 			self.servicelist.instance.moveSelection(self.servicelist.instance.pageDown)
+
+	def keyUp(self):
+		self.servicelist.moveUp()
+
+	def keyDown(self):
+		self.servicelist.moveDown()
 
 	def keyRecord(self):
 		ref = self.getCurrentSelection()
