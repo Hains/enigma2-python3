@@ -157,10 +157,7 @@ class Timezones:
 				name = commonTimezoneNames.get(tz, zone)  # Use the more common name if one is defined.
 				if name is None:
 					continue
-				name = name.encode(encoding="UTF-8", errors="ignore")
-				area = area.encode(encoding="UTF-8", errors="ignore")
-				zone = zone.encode(encoding="UTF-8", errors="ignore")
-				zones.append((zone, name.replace(b"_", b" ")))
+				zones.append((zone, name.replace("_", " ")))
 			if area:
 				if area in self.timezones:
 					zones = self.timezones[area] + zones
@@ -176,13 +173,13 @@ class Timezones:
 	def gmtSort(self, zones):
 		data = {}
 		for (zone, name) in zones:
-			if name.startswith(b"GMT"):
+			if name.startswith("GMT"):
 				try:
 					key = int(name[4:])
 					key = (key * -1) + 15 if name[3:4] == "-" else key + 15
-					key = b"GMT%02d" % key
+					key = "GMT%02d" % key
 				except ValueError:
-					key = b"GMT15"
+					key = "GMT15"
 			else:
 				key = name
 			data[key] = (zone, name)
@@ -219,18 +216,14 @@ class Timezones:
 		if root is not None:
 			for zone in root.findall("zone"):
 				name = zone.get("name", "")
-				if isinstance(name, unicode):
-					name = name.encode(encoding="UTF-8", errors="ignore")
 				zonePath = zone.get("zone", "")
-				if isinstance(zonePath, unicode):
-					zonePath = zonePath.encode(encoding="UTF-8", errors="ignore")
 				if path.exists(path.join(TIMEZONE_DATA, zonePath)):
 					zones.append((zonePath, name))
 				else:
 					print("[Timezones] Warning: Classic time zone '%s' (%s) is not available in '%s'!" % (name, zonePath, TIMEZONE_DATA))
-			self.timezones[b"Classic"] = zones
+			self.timezones["Classic"] = zones
 		if len(zones) == 0:
-			self.timezones[b"Classic"] = [(b"UTC", b"UTC")]
+			self.timezones["Classic"] = [("UTC", b"UTC")]
 
 	# Return a sorted list of all Area entries.
 	#
