@@ -292,6 +292,8 @@ class Menu(Screen, ProtectedScreen):
 				"ok": self.okbuttonClick,
 				"cancel": self.closeNonRecursive,
 				"menu": self.closeRecursive,
+				"moveUp": self.key_up,
+				"moveDown": self.key_down,
 				"0": self.keyNumberGlobal,
 				"1": self.keyNumberGlobal,
 				"2": self.keyNumberGlobal,
@@ -517,6 +519,12 @@ class Menu(Screen, ProtectedScreen):
 		if not self.list:
 			self.list.append(('',None,'dummy','10',10))
 		self.list.sort(key=lambda listweight : int(listweight[4]))
+
+	def key_up(self):
+		self["menu"].up()
+
+	def key_down(self):
+		self["menu"].down()
 
 class MenuSort(Menu):
 	def __init__(self, session, parent):
