@@ -110,7 +110,7 @@ def saveResumePoints():
 	import pickle
 	try:
 		f = open('/home/root/resumepoints.pkl', 'wb')
-		pickle.dump(resumePointCache, f, cPickle.HIGHEST_PROTOCOL)
+		pickle.dump(resumePointCache, f, pickle.HIGHEST_PROTOCOL)
 		f.close()
 	except Exception as ex:
 		print("[InfoBarGenerics] Failed to write resumepoints:", ex)
