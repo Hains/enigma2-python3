@@ -3232,7 +3232,7 @@ int handleEvent(eServiceEvent *ptr, ePyObject dest_list, const char* argstring, 
 PyObject *eEPGCache::lookupEvent(ePyObject list, ePyObject convertFunc)
 {
 	ePyObject convertFuncArgs;
-	int argcount=0;
+	ssize_t argcount=0;
 	const char *argstring=NULL;
 	if (!PyList_Check(list))
 	{
@@ -3832,8 +3832,7 @@ PyObject *eEPGCache::search(ePyObject arg)
 			ePyObject obj = PyTuple_GET_ITEM(arg,0);
 			if (PyString_Check(obj))
 			{
-				argcount = PyString_Size(obj);
-				argstring = PyString_AS_STRING(obj);
+				argstring = PyUnicode_AsUTF8AndSize(obj, &argcount);
 				for (int i=0; i < argcount; ++i)
 					switch(argstring[i])
 					{
@@ -3928,8 +3927,8 @@ PyObject *eEPGCache::search(ePyObject arg)
 				if (PyString_Check(obj))
 				{
 					int casetype = PyLong_AsLong(PyTuple_GET_ITEM(arg, 4));
-					const char *str = PyString_AS_STRING(obj);
-					int strlen = PyString_Size(obj);
+					ssize_t strlen;
+					const char *str = PyUnicode_AsUTF8AndSize(obj, &strlen);
 					switch (querytype)
 					{
 						case 1:
