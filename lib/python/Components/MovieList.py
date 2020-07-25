@@ -696,7 +696,7 @@ class MovieList(GUIComponent):
 		self.firstFileEntry = numberOfDirs
 		self.parentDirectory = 0
 
-#		self.list.sort(key=self.buildGroupwiseSortkey)    FIXME!
+		self.list.sort(key=self.buildGroupwiseSortkey)
 
 # Have we had a temporary sort method override set in MovieSelectiom.py?
 # If so use it, remove it (it's a one-off) and set the current method so
@@ -858,7 +858,7 @@ class MovieList(GUIComponent):
 		ref = x[0]
 		if ref.flags & eServiceReference.mustDescent:
 			return (0, x[1] and x[1].getName(ref).lower() or "")
-		return (1, -x[2])
+		return (1, "", -x[2])
 
 	def buildGroupwiseSortkey(self, x):
 		# Sort recordings by date, sort MP3 and stuff by name
