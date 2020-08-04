@@ -7,6 +7,9 @@ from time import time
 from Tools.Profile import profile, profile_final
 profile("PYTHON_START")
 
+# Don't remove this line. It may seem to do nothing, but if removed,
+# it will break output redirection for crash logs.
+from Tools import RedirectOutput
 from Tools.Directories import resolveFilename, fileExists
 from boxbranding import getVisionVersion, getVisionRevision, getHaveMultiLib, getMachineBuild, getSoCFamily
 from enigma import getBoxType, getBoxBrand
