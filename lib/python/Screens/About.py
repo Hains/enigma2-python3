@@ -125,10 +125,7 @@ class About(Screen):
 		AboutText += "\n"
 		AboutText += _("Detected NIMs:") + "\n"
 
-		try:  # FIXME
-			nims = nimmanager.nimListCompressed()
-		except:
-			nims = nimmanager.nimList()
+		nims = nimmanager.nimListCompressed()
 		for count in range(len(nims)):
 			if count < 4:
 				self["Tuner" + str(count)] = StaticText(nims[count])
