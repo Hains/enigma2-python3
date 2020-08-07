@@ -1862,7 +1862,7 @@ class ChannelSelectionBase(Screen):
 		self.selectionNumber = ""
 
 	def keyAsciiCode(self):
-		unichar = unichr(getPrevAsciiCode())
+		unichar = chr(getPrevAsciiCode())
 		charstr = unichar.encode("utf-8")
 		if len(charstr) == 1:
 			self.servicelist.moveToChar(charstr[0])
