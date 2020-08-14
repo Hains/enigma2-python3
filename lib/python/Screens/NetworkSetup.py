@@ -21,7 +21,7 @@ from Tools.Directories import resolveFilename, SCOPE_PLUGINS, SCOPE_CURRENT_SKIN
 from Tools.LoadPixmap import LoadPixmap
 from Plugins.Plugin import PluginDescriptor
 from enigma import eTimer, eConsoleAppContainer, getBoxType
-import commands
+import subprocess
 from Components.Console import Console
 from Screens.Standby import TryQuitMainloop
 from random import Random
@@ -449,7 +449,7 @@ class NetworkMacSetup(Screen, ConfigListScreen, HelpableScreen):
 
 	def getmac(self, iface):
 		mac = (0,0,0,0,0,0)
-		ifconfig = commands.getoutput("ifconfig " + iface + "| grep HWaddr | awk '{ print($5) }'").strip()
+		ifconfig = subprocess.getoutput("ifconfig " + iface + "| grep HWaddr | awk '{ print($5) }'").strip()
 		if len(ifconfig) == 0:
 			mac = "00:00:00:00:00:00"
 		else:
@@ -465,7 +465,7 @@ class NetworkMacSetup(Screen, ConfigListScreen, HelpableScreen):
 	def ok(self):
 		MAC = self.getConfigMac.value
 		open("/etc/enigma2/hwmac", "w").write(MAC)
-		route = commands.getoutput("route -n |grep UG | awk '{print($2) }'")
+		route = subprocess.getoutput("route -n |grep UG | awk '{print($2) }'")
 		self.restartLan()
 
 	def run(self):
