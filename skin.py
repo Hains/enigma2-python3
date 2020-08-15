@@ -145,7 +145,7 @@ def loadSkin(filename, scope=SCOPE_SKIN, desktop=getDesktop(GUI_SKIN_ID), screen
 							# print("[Skin] DEBUG: Processing a windowstyle ID='%s'." % scrnID)
 							domStyle = xml.etree.cElementTree.ElementTree(xml.etree.cElementTree.Element("skin"))
 							domStyle.getroot().append(element)
-							windowStyles[scrnID] = (desktop, screenID, domStyle, filename, scope)
+							windowStyles[scrnID] = (desktop, screenID, domStyle.getroot(), filename, scope)
 					# Element is not a screen or windowstyle element so no need for it any longer.
 				reloadWindowStyles()  # Reload the window style to ensure all skin changes are taken into account.
 				print("[skin] Loading skin file '%s' complete." % filename)
