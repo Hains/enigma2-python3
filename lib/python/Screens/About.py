@@ -431,40 +431,28 @@ class Geolocation(Screen):
 
 		try:
 			continent = geolocation.get("continent", None)
-			if isinstance(continent, unicode):
-				continent = continent.encode(encoding="UTF-8", errors="ignore")
 			if continent is not None:
 				GeolocationText +=  _("Continent: ") + continent + "\n"
 
 			country = geolocation.get("country", None)
-			if isinstance(country, unicode):
-				country = country.encode(encoding="UTF-8", errors="ignore")
 			if country is not None:
 				GeolocationText +=  _("Country: ") + country + "\n"
 
 			state = geolocation.get("regionName", None)
-			if isinstance(state, unicode):
-				state = state.encode(encoding="UTF-8", errors="ignore")
 			if state is not None:
 				GeolocationText +=  _("State: ") + state + "\n"
 
 			city = geolocation.get("city", None)
-			if isinstance(city, unicode):
-				city = city.encode(encoding="UTF-8", errors="ignore")
 			if city is not None:
 				GeolocationText +=  _("City: ") + city + "\n"
 
 			GeolocationText += "\n"
 
 			timezone = geolocation.get("timezone", None)
-			if isinstance(timezone, unicode):
-				timezone = timezone.encode(encoding="UTF-8", errors="ignore")
 			if timezone is not None:
 				GeolocationText +=  _("Timezone: ") + timezone + "\n"
 
 			currency = geolocation.get("currency", None)
-			if isinstance(currency, unicode):
-				currency = currency.encode(encoding="UTF-8", errors="ignore")
 			if currency is not None:
 				GeolocationText +=  _("Currency: ") + currency + "\n"
 
@@ -755,10 +743,6 @@ class SystemNetworkInfo(Screen):
 
 		isp = geolocation.get("isp", None)
 		isporg = geolocation.get("org", None)
-		if isinstance(isp, unicode):
-			isp = isp.encode(encoding="UTF-8", errors="ignore")
-		if isinstance(isporg, unicode):
-			isporg = isporg.encode(encoding="UTF-8", errors="ignore")
 		self.AboutText += "\n"
 		if isp is not None:
 			if isporg is not None:
