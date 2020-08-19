@@ -778,7 +778,7 @@ class SystemNetworkInfo(Screen):
 		self.console.ePopen('ethtool %s' % self.iface, self.SpeedFinished)
 
 	def SpeedFinished(self, result, retval, extra_args):
-		result_tmp = result.split('\n')
+		result_tmp = result.decode().split('\n')
 		for line in result_tmp:
 			if 'Speed:' in line:
 				speed = line.split(': ')[1][:-4]
@@ -898,6 +898,7 @@ class SystemNetworkInfo(Screen):
 		self["devicepic"].show()
 
 	def dataAvail(self, data):
+		data = data.decode()
 		self.LinkState = None
 		for line in data.splitlines():
 			line = line.strip()
