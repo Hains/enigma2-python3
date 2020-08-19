@@ -616,7 +616,7 @@ class Devices(Screen):
 		self.Console.ePopen("df -mh | grep -v '^Filesystem'", self.Stage1Complete)
 
 	def Stage1Complete(self, result, retval, extra_args=None):
-		result = result.replace('\n                        ', ' ').split('\n')
+		result = result.decode().replace('\n                        ', ' ').split('\n')
 		self.mountinfo = ""
 		for line in result:
 			self.parts = line.split()
