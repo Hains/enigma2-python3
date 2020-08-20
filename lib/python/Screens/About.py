@@ -3,7 +3,7 @@
 from __future__ import print_function
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
-from Components.config import config, ConfigYesNo
+from Components.config import config
 from Components.ActionMap import ActionMap
 from Components.Sources.StaticText import StaticText
 from Components.Harddisk import harddiskmanager, Harddisk
@@ -23,9 +23,7 @@ from Components.Pixmap import MultiPixmap
 from Components.Network import iNetwork
 from Components.SystemInfo import SystemInfo
 from Tools.Geolocation import geolocation
-import urllib2
-
-config.misc.OVupdatecheck = ConfigYesNo(default=True)
+import urllib
 
 class About(Screen):
 	def __init__(self, session):
@@ -202,9 +200,9 @@ class OpenVisionInformation(Screen):
 					ovurl = "https://raw.githubusercontent.com/OpenVisionE2/openvision-development-platform/develop/meta-openvision/conf/distro/revision.conf"
 				else:
 					ovurl = "https://raw.githubusercontent.com/OpenVisionE2/openvision-oe/develop/meta-openvision/conf/distro/revision.conf"
-				ovresponse = urllib2.urlopen(ovurl)
-				ovrevision = ovresponse.read()
-				ovrevisionupdate = int(filter(str.isdigit, ovrevision))
+				ovresponse = urllib.request.urlopen(ovurl)
+				ovrevision = ovresponse.read().decode()
+				ovrevisionupdate = ovrevision.split('r')[1][:3]
 			except Exception as e:
 				ovrevisionupdate = _("Requires internet connection")
 		else:
@@ -1080,9 +1078,9 @@ class CommitInfo(Screen):
 			try:
 				# For python 2.7.11 we need to bypass the certificate check
 				from ssl import _create_unverified_context
-				log = loads(urllib2.urlopen(url, timeout=5, context=_create_unverified_context()).read())
+				log = loads(urllib.request.urlopen(url, timeout=5, context=_create_unverified_context()).read())
 			except:
-				log = loads(urllib2.urlopen(url, timeout=5).read())
+				log = loads(urllib.request.urlopen(url, timeout=5).read())
 			for c in log:
 				creator = c['commit']['author']['name']
 				title = c['commit']['message']
