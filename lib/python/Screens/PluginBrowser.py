@@ -481,6 +481,7 @@ class PluginDownloadBrowser(Screen):
 
 	def dataAvail(self, str):
 		#prepend any remaining data from the previous call
+		str = str.decode()
 		str = self.remainingdata + str
 		#split in lines
 		lines = str.split('\n')

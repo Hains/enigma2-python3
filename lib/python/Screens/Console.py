@@ -119,4 +119,4 @@ class Console(Screen):
 			self.show()
 
 	def dataAvail(self, str):
-		self["text"].appendText(str)
+		self["text"].appendText(str.decode())
