@@ -604,7 +604,7 @@ class NumberZap(Screen):
 				self.startBouquet = self.bouquet
 
 	def keyBlue(self):
-		if config.misc.zapkey_delay.value > 0:
+		if int(config.misc.zapkey_delay.value) > 0:
 			self.Timer.start(int(1000*int(config.misc.zapkey_delay.value)), True)
 		if self.searchNumber:
 			if self.startBouquet == self.bouquet:
@@ -615,7 +615,7 @@ class NumberZap(Screen):
 			self["Service"].newService(self.service)
 
 	def keyNumberGlobal(self, number):
-		if config.misc.zapkey_delay.value > 0:
+		if int(config.misc.zapkey_delay.value > 0):
 			self.Timer.start(int(1000*int(config.misc.zapkey_delay.value)), True)
 		self.numberString += str(number)
 		self["number"].text = self["number_summary"].text = self.numberString
@@ -662,7 +662,7 @@ class NumberZap(Screen):
 
 		self.Timer = eTimer()
 		self.Timer.callback.append(self.keyOK)
-		if config.misc.zapkey_delay.value > 0:
+		if int(config.misc.zapkey_delay.value) > 0:
 			self.Timer.start(int(1000*int(config.misc.zapkey_delay.value)), True)
 
 class InfoBarNumberZap:
