@@ -56,7 +56,7 @@ class CronTimers(Screen):
 		self.Console.ePopen('/usr/bin/opkg list_installed ' + self.service_name, self.checkNetworkState)
 
 	def checkNetworkState(self, str, retval, extra_args):
-		if 'Collected errors' in str:
+		if 'Collected errors' in str.decode():
 			self.session.openWithCallback(self.close, MessageBox, _("Seems a background update check is in progress, please try again later."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
 		elif not str:
 			self.session.openWithCallback(self.InstallPackage, MessageBox, _('Ready to install "%s" ?') % self.service_name, MessageBox.TYPE_YESNO)
