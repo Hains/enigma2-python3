@@ -86,7 +86,7 @@ class inputDevices:
 			return "Unknown device name"
 
 	def getDeviceList(self):
-		return sorted(self.Devices.iterkeys())
+		return sorted(iter(self.Devices.keys()))
 
 	def setDeviceAttribute(self, device, attribute, value):
 		#print("[InputDevice] setting for device", device, "attribute", attribute, " to value", value)
