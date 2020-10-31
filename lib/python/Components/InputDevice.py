@@ -81,7 +81,7 @@ class inputDevices:
 
 	def getDeviceName(self, x):
 		if x in self.Devices.keys():
-			return self.Devices[x].get("name", x)
+			return self.Devices[x].get("name", x).decode()
 		else:
 			return "Unknown device name"
 
