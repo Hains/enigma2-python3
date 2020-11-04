@@ -1548,7 +1548,7 @@ class ConfigSet(ConfigElement):
 		self.changed()
 
 	def handleKey(self, key):
-		if key in KEY_NUMBERS + [KEY_DELETE, KEY_BACKSPACE]:
+		if key in [KEY_NUMBERS, KEY_DELETE, KEY_BACKSPACE]:
 			if self.pos != -1:
 				self.toggleChoice(self.choices[self.pos])
 		elif key == KEY_LEFT:
