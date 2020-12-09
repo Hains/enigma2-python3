@@ -1,6 +1,6 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-from __future__ import print_function
+
 from Components.GUIComponent import GUIComponent
 from skin import parseColor, parseFont
 

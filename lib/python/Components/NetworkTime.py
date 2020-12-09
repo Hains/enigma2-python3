@@ -1,6 +1,6 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-from __future__ import print_function
+
 from Components.Console import Console
 from Components.config import config
 from enigma import eTimer, eDVBLocalTimeHandler, eEPGCache

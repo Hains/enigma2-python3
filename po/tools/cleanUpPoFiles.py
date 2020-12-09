@@ -1,7 +1,5 @@
 #!/usr/local/bin/python
 
-from __future__ import print_function
-
 """Cleans up PO translation files
 
    This script will iterate through all .po files and unset ( "" ) msgstr 

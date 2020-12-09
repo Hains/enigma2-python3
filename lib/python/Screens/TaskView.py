@@ -1,6 +1,6 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-from __future__ import print_function
+
 from Components.ActionMap import ActionMap
 from Components.config import config, ConfigSubsection, ConfigSelection, getConfigListEntry
 from Components.ConfigList import ConfigListScreen

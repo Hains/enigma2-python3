@@ -1,6 +1,6 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-from __future__ import print_function
+
 from enigma import eListboxPythonMultiContent
 from Components.Converter.StringList import StringList
 

@@ -1,6 +1,6 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-from __future__ import print_function
+
 from enigma import eActionMap
 
 from Tools.KeyBindings import queryKeyBinding
