@@ -1,6 +1,6 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-from __future__ import print_function
+
 # the implementation here is a bit crappy.
 import time
 from Tools.Directories import resolveFilename, SCOPE_CONFIG

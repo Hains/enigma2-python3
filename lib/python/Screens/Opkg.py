@@ -1,6 +1,6 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-from __future__ import print_function
+
 from Components.ActionMap import ActionMap
 from Components.Opkg import OpkgComponent
 from Components.Label import Label

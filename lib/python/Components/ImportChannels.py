@@ -1,6 +1,6 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-from __future__ import print_function
+
 import threading, urllib, os, shutil, tempfile
 from json import loads
 from enigma import eDVBDB, eEPGCache

@@ -1,7 +1,8 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-from __future__ import print_function
+
 import boxbranding
+
 print("getVisionVersion=%s<" %boxbranding.getVisionVersion())
 print("getVisionRevision=%s<" %boxbranding.getVisionRevision())
 print("getDeveloperName=%s<" %boxbranding.getDeveloperName())
