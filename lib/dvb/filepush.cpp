@@ -535,7 +535,7 @@ void eFilePushThreadRecorder::thread()
 
 	sigemptyset(&sigset);
 	sigaddset(&sigset, SIGUSR1);
-	pthread_sigmask(SIG_BLOCK, &sigset, (sigset_t *)0);
+	sigprocmask(SIG_BLOCK, &sigset, (sigset_t *)0);
 
 	hasStarted();
 
